@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>TRACE;DEBUG;NETSTANDARD;NETSTANDARD2_0;DEBUG;</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="MarvelTypes.fs" />
+    <Compile Include="MarvelApi.fs" />
+    <Compile Include="Character.fs" />
+    <Compile Include="Characters.fs" />
+    <Compile Include="SearchBar.fs" />
+    <Compile Include="LoadingControl.fs" />
+    <Compile Include="SearchCharacterView.fs" />
+    <Compile Include="MarvelFormsElmish.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.0.0.482510" />
+    <PackageReference Include="Xamarin.Essentials" Version="0.6.0-preview" />
+    <PackageReference Include="Elmish.XamarinForms" Version="0.15.2" />
+    <PackageReference Include="Elmish.XamarinForms.LiveUpdate" Version="0.15.2" />
+    <PackageReference Include="FSharp.Core" Version="4.5.0" />
+    <PackageReference Update="FSharp.Core" Version="4.5.0" />
+    <!-- workaround for VSMac bug https://github.com/mono/monodevelop/pull/5137 -->
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+</Project>
