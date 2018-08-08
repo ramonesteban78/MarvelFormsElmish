@@ -26,7 +26,7 @@ let private getImageUrlUri imageUrl =
 let private imageSourceFromUri uri = 
     ImageSource.FromUri(uri)
 
-let private getImageSoure = 
+let getImageSoure = 
     getImageUrlUri >> imageSourceFromUri 
 
 let mkViewCell name imageSource =

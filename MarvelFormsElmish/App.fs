@@ -8,9 +8,9 @@ open Xamarin.Forms
 
 module App = 
 
-    let init = SearchCharacterView.init
-    let update = SearchCharacterView.update
-    let view = SearchCharacterView.view
+    let init = MainView.init
+    let update = MainView.update
+    let view = MainView.view
 
     // Note, this declaration is needed if you enable LiveUpdate
     let program = Program.mkProgram init update view

@@ -15,6 +15,7 @@ type Model = {
 type Msg =
     | CharactersLoaded of Character.Model list
     | ExecuteSearch of string
+    | SelectedHero of Characters.Msg 
 
 
 let private loadCharacters text =
@@ -26,15 +27,16 @@ let private loadCharacters text =
 
 // Update
 let init() = 
-    { listOfHeroes = None; searchText = ""; searchingForHeroes = true }, Cmd.ofAsyncMsg(loadCharacters "")
+    { listOfHeroes = None; searchText = ""; searchingForHeroes = true; }, Cmd.ofAsyncMsg(loadCharacters "")
 
 let update msg model =
     match msg with
     | CharactersLoaded chars -> 
-        { model with listOfHeroes = Some chars; searchingForHeroes = false }, Cmd.none
+       { model with listOfHeroes = Some chars; searchingForHeroes = false }, Cmd.none
     | ExecuteSearch text -> 
-       { listOfHeroes = None; searchText = text; searchingForHeroes = true }, Cmd.ofAsyncMsg(loadCharacters text)
-
+       { model with listOfHeroes = None; searchText = text; searchingForHeroes = true }, Cmd.ofAsyncMsg(loadCharacters text)
+    | SelectedHero msg ->
+        model, Cmd.none
 
 // View
 let view (model: Model) dispatch = 
@@ -45,6 +47,6 @@ let view (model: Model) dispatch =
             rowSpacing = 0.0,
             children=[
                 (SearchBar.view dispatch ExecuteSearch).GridRow(0)
-                (Characters.view model.listOfHeroes).GridRow(1)
+                (Characters.view model.listOfHeroes (SelectedHero >> dispatch)).GridRow(1)
                 (LoadingControl.view model.searchingForHeroes).GridRow(0).GridRowSpan(2)
             ]))

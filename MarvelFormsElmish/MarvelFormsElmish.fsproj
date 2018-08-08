@@ -17,6 +17,8 @@
     <Compile Include="SearchBar.fs" />
     <Compile Include="LoadingControl.fs" />
     <Compile Include="SearchCharacterView.fs" />
+    <Compile Include="DetailCharacterView.fs" />
+    <Compile Include="MainView.fs" />
     <Compile Include="App.fs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,12 @@ open Elmish.XamarinForms
 open Elmish.XamarinForms.DynamicViews
 open Xamarin.Forms
 
-let charactersView heroes = 
+
+type Msg =
+    | SelectedHero of Character.Model
+
+
+let charactersView heroes (dispatch: Msg -> unit) = 
     match heroes with
     | Some characters ->
         match characters with
@@ -20,7 +25,7 @@ let charactersView heroes =
                  verticalOptions = LayoutOptions.FillAndExpand,
                  separatorVisibility = SeparatorVisibility.None,
                  rowHeight=80,
-                 //itemTapped=(fun idx -> dispatch(Selected(characters.[idx]))),
+                 itemTapped=(fun idx -> SelectedHero (characters.[idx]) |> dispatch),
                  items = [
                      for character in characters do
                          yield Character.view character
@@ -33,7 +38,7 @@ let charactersView heroes =
         )
 
 // View 
-let view model = 
-    dependsOn (model) (fun _ characters -> charactersView characters)
+let view model dispatch = 
+    dependsOn (model) (fun _ characters -> charactersView characters dispatch)
 
          
