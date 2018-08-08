@@ -17,16 +17,16 @@
     <Compile Include="SearchBar.fs" />
     <Compile Include="LoadingControl.fs" />
     <Compile Include="SearchCharacterView.fs" />
-    <Compile Include="MarvelFormsElmish.fs" />
+    <Compile Include="App.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="3.0.0.482510" />
     <PackageReference Include="Xamarin.Essentials" Version="0.6.0-preview" />
-    <PackageReference Include="Elmish.XamarinForms" Version="0.15.2" />
-    <PackageReference Include="Elmish.XamarinForms.LiveUpdate" Version="0.15.2" />
     <PackageReference Include="FSharp.Core" Version="4.5.0" />
     <PackageReference Update="FSharp.Core" Version="4.5.0" />
     <!-- workaround for VSMac bug https://github.com/mono/monodevelop/pull/5137 -->
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Elmish.XamarinForms" Version="0.16.0" />
+    <PackageReference Include="Elmish.XamarinForms.LiveUpdate" Version="0.16.0" />
   </ItemGroup>
 </Project>

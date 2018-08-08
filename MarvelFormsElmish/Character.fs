@@ -54,8 +54,8 @@ let mkViewCell name imageSource =
     View.StackLayout(
            orientation = StackOrientation.Horizontal,
             children = [
-                View.Image(source = imageSource, widthRequest = 60.0, heightRequest=60.0);
-                View.Label(text = name)
+                View.Image(source = imageSource, widthRequest = 80.0, heightRequest=80.0);
+                View.Label(text = name, verticalOptions = LayoutOptions.Center)
             ])
 
 let view (model: Model) = 

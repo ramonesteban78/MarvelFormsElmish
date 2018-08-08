@@ -25,7 +25,7 @@ type App () as app =
     // Uncomment this line to enable live update in debug mode. 
     // See https://fsprojects.github.io/Elmish.XamarinForms/tools.html for further  instructions.
     //
-    //do runner.EnableLiveUpdate()
+    do runner.EnableLiveUpdate()
 #endif    
 
     // Uncomment this code to save the application state to app.Properties using Newtonsoft.Json
