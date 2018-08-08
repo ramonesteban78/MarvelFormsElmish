@@ -7,7 +7,7 @@ open Newtonsoft.Json
 
 // Model
 type Model = {
-    listOfHeroes : Characters.Model;
+    listOfHeroes : Character.Model list option;
     searchText : string;
     searchingForHeroes : bool;
 }
@@ -26,14 +26,14 @@ let private loadCharacters text =
 
 // Update
 let init() = 
-    { listOfHeroes = { Characters = None }; searchText = ""; searchingForHeroes = true }, Cmd.ofAsyncMsg(loadCharacters "")
+    { listOfHeroes = None; searchText = ""; searchingForHeroes = true }, Cmd.ofAsyncMsg(loadCharacters "")
 
 let update msg model =
     match msg with
     | CharactersLoaded chars -> 
-        { model with listOfHeroes = { Characters = Some chars }; searchingForHeroes = false }, Cmd.none
+        { model with listOfHeroes = Some chars; searchingForHeroes = false }, Cmd.none
     | ExecuteSearch text -> 
-       { model with searchText = text; searchingForHeroes = true }, Cmd.ofAsyncMsg(loadCharacters text)
+       { listOfHeroes = None; searchText = text; searchingForHeroes = true }, Cmd.ofAsyncMsg(loadCharacters text)
 
 
 // View

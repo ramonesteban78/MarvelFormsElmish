@@ -4,15 +4,8 @@ open Elmish.XamarinForms
 open Elmish.XamarinForms.DynamicViews
 open Xamarin.Forms
 
-// Model
-type Model = {
-    Characters : Character.Model list option
-    }
-
-
-// View 
-let view (model: Model) = 
-    match model.Characters with
+let charactersView heroes = 
+    match heroes with
     | Some characters ->
         match characters with
         | [] ->
@@ -38,4 +31,9 @@ let view (model: Model) =
             horizontalOptions= LayoutOptions.Center,
             verticalOptions = LayoutOptions.Center
         )
+
+// View 
+let view model = 
+    dependsOn (model) (fun _ characters -> charactersView characters)
+
          
