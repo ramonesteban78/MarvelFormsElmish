@@ -17,29 +17,8 @@ type Model = {
     thumbnail : ImageUrl
 }
 
-//type Msg = 
-    //| Normal
-    //| Selected of Model
-
 let private getImageUrlUri imageUrl =
     Uri(imageUrl.path + "." + imageUrl.extension)
-
-
-
-// Update
-
-//let initModel model =
- //{ id = model.id; name = model.name; description = model.description; thumbnail = model.thumbnail }
-
-// Initial state for the control
-//let init (model) = initModel model, Cmd.none
-
-// Just return the same input model
-//let update msg model =
-    //match msg with
-    //| Normal -> model, Cmd.none
-    //| Selected character -> character, Cmd.ofMsg(Selected(character))
-
 
 
 // View
@@ -59,7 +38,7 @@ let mkViewCell name imageSource =
             ])
 
 let view (model: Model) = 
-    //dependsOn (model.name, getImageSoure model.thumbnail) (fun _ (name, imageSource) -> mkViewCell name imageSource)
-    model.thumbnail 
-    |> getImageSoure 
-    |> mkViewCell model.name 
+    dependsOn (model.name, getImageSoure model.thumbnail) (fun _ (name, imageSource) -> mkViewCell name imageSource)
+    //model.thumbnail 
+    //|> getImageSoure 
+    //|> mkViewCell model.name 

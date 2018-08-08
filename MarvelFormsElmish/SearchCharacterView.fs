@@ -6,10 +6,10 @@ open Newtonsoft.Json
 
 
 // Model
-
 type Model = {
     listOfHeroes : Characters.Model;
     searchText : string;
+    searchingForHeroes : bool;
 }
 
 type Msg =
@@ -24,17 +24,16 @@ let private loadCharacters text =
         return CharactersLoaded marvelData.data.results 
     }
 
-
 // Update
 let init() = 
-    { listOfHeroes = { Characters = None }; searchText = "" }, Cmd.ofAsyncMsg(loadCharacters "")
+    { listOfHeroes = { Characters = None }; searchText = ""; searchingForHeroes = true }, Cmd.ofAsyncMsg(loadCharacters "")
 
 let update msg model =
     match msg with
     | CharactersLoaded chars -> 
-        { model with listOfHeroes = { Characters = Some chars }}, Cmd.none
+        { model with listOfHeroes = { Characters = Some chars }; searchingForHeroes = false }, Cmd.none
     | ExecuteSearch text -> 
-       { model with searchText = text }, Cmd.ofAsyncMsg(loadCharacters text)
+       { model with searchText = text; searchingForHeroes = true }, Cmd.ofAsyncMsg(loadCharacters text)
 
 
 // View
@@ -47,4 +46,5 @@ let view (model: Model) dispatch =
             children=[
                 (SearchBar.view dispatch ExecuteSearch).GridRow(0)
                 (Characters.view model.listOfHeroes).GridRow(1)
+                (LoadingControl.view model.searchingForHeroes).GridRow(0).GridRowSpan(2)
             ]))
