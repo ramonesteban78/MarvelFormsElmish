@@ -8,8 +8,12 @@ open Xamarin.Forms
 
 module App = 
 
+    let init = SearchCharacterView.init
+    let update = SearchCharacterView.update
+    let view = SearchCharacterView.view
+
     // Note, this declaration is needed if you enable LiveUpdate
-    let program = Program.mkProgram SearchCharacterView.init SearchCharacterView.update SearchCharacterView.view
+    let program = Program.mkProgram init update view
 
 type App () as app = 
     inherit Application ()

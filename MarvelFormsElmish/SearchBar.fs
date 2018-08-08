@@ -9,20 +9,22 @@ type Model = {
     Text : string
 }
 
-type Msg =
-    | NewTextEntered of string
+//type Msg =
+    //| ExecuteSearch of string
 
 
-// Update
+//// Update
 
-let init () = { Text = "" }, Cmd.none
+//let init () = { Text = "" }, Cmd.none
 
-let update msg model =
-    match msg with
-    | NewTextEntered text -> { model with Text = text },Cmd.none
-
+//let update msg model =
+    //match msg with
+    //| ExecuteSearch text -> { model with Text = text },Cmd.none
 
 // View
 
-let view (model: Model) dispatch = 
-      View.SearchBar(searchCommand = (fun searchBarText -> dispatch  (NewTextEntered (searchBarText))))
+let view dispatch msg = 
+      View.SearchBar(
+          placeholder = "Find your hero",
+          searchCommand = (fun text -> dispatch (msg text))
+          )
