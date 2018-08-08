@@ -51,13 +51,12 @@ let private getImageSoure =
     getImageUrlUri >> imageSourceFromUri 
 
 let mkViewCell name imageSource =
-    View.ViewCell(
-       view = View.StackLayout(
+    View.StackLayout(
            orientation = StackOrientation.Horizontal,
             children = [
                 View.Image(source = imageSource, widthRequest = 60.0, heightRequest=60.0);
                 View.Label(text = name)
-            ]))
+            ])
 
 let view (model: Model) = 
     //dependsOn (model.name, getImageSoure model.thumbnail) (fun _ (name, imageSource) -> mkViewCell name imageSource)
